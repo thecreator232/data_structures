@@ -58,6 +58,20 @@ class Node(object):
         """ Returns list of children."""
         return self._child.keys()
 
+    def insert_child(self, node):
+        """Add's a new child of the current node.
+
+        Params:
+            node: Node type object.
+        Returns:
+            returns True if object is inserted, otherwise returns False.
+        """
+        try:
+            self._child[node._key] = node
+            return True
+        except Exception:
+            return False
+
 class RootNode(Node):
     def __init__(self):
         super(RootNode, self).__init__(None, None)
