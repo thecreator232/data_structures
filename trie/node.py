@@ -5,7 +5,7 @@ from exceptions import ChildDoesNotExist
 class Node(object):
     def __init__(self, parent, key, child=None, value=None):
         self._value = value
-        self._key = key
+        self.key = key
         self._child = child
         self._parent = parent
 
@@ -67,16 +67,20 @@ class Node(object):
             returns True if object is inserted, otherwise returns False.
         """
         try:
-            self._child[node._key] = node
+            self._child[node.key] = node
             return True
         except Exception:
             return False
 
+    def insert_value(self, value):
+        """ Assigns value to the Node Instance.
+
+        Params:
+            value: Arbitrary object
+        """
+        self._value = value
+
+
 class RootNode(Node):
     def __init__(self):
         super(RootNode, self).__init__(None, None)
-
-
-class LeafNode(Node):
-    def __init__(self, parent, value, key):
-        super(LeafNode, self).__init__(parent, value, key)
